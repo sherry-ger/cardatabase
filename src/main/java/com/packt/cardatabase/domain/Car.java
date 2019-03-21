@@ -1,5 +1,10 @@
 package com.packt.cardatabase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.ResourceProcessor;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +20,7 @@ public class Car {
 	private long id;
 	private String brand, model, color, registerNumber;
 	private int year, price;
+	private int marketEstimate;
 
 	public Car() {
 	}
@@ -39,6 +45,14 @@ public class Car {
 		this.price = price;
 		this.owner = owner;
 	}
+
+    public Car(String brand, String model, int year, int marketEstimate) {
+        super();
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.marketEstimate = marketEstimate;
+    }
 
 	public String getBrand() {
 		return brand;
@@ -100,4 +114,14 @@ public class Car {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
+
+	public int getMarketEstimate() {
+		return marketEstimate;
+	}
+
+	public void setMarketEstimate(int marketEstimate) {
+		this.marketEstimate = marketEstimate;
+	}
+
+
 }

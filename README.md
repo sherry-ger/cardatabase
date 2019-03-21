@@ -2,11 +2,10 @@
 
 A simple Spring Boot application that uses the H2 in memory database to store cars.
 
-To start the application: 
+To start the application:
 
 `./mvnw spring-boot:run`
 
-You can also use Eclipse to run and debug the project.
+This Service is dependent on https://github.com/bvader/car-value-estimator and should be started first. 
 
-The front end React application is at: https://github.com/adamquan/carfront
-
+The front end React application is at: https://github.com/bvader/carfront

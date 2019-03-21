@@ -30,12 +30,13 @@ public class CarController {
 
     @RequestMapping(method= RequestMethod.GET, value="/api/cars")
     public Iterable<Car> Car() {
-        System.out.println("In GET");
+        System.out.println("In GET All");
         return carRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/api/cars")
     public Car save(@RequestBody Car car) {
+        System.out.println("In POST add");
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(estimatorUri)
                 // Add query parameter
@@ -49,7 +50,6 @@ public class CarController {
 
         MarketEstimate carEstimate = restTemplate.getForObject(builder.build().toString(), MarketEstimate.class);
         System.out.println(carEstimate.toString());
-        System.out.println("In POST");
 
         car.setMarketEstimate(carEstimate.getEstimate());
 
@@ -60,11 +60,13 @@ public class CarController {
 
     @RequestMapping(method=RequestMethod.GET, value="/api/cars/{id}")
     public Optional<Car> show(@PathVariable Long id) {
+        System.out.println("In GET by id");
         return carRepository.findById(id);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/api/cars/{id}")
     public Car update(@PathVariable Long id, @RequestBody Car Car) {
+        System.out.println("In PUT by id");
         Optional<Car> optCar = carRepository.findById(id);
         Car car = optCar.get();
         if(Car.getBrand() != null)
@@ -90,7 +92,6 @@ public class CarController {
 
         MarketEstimate carEstimate = restTemplate.getForObject(builder.build().toString(), MarketEstimate.class);
         System.out.println(carEstimate.toString());
-        System.out.println("In POST");
 
         car.setMarketEstimate(carEstimate.getEstimate());
 

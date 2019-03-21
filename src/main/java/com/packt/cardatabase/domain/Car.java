@@ -1,10 +1,5 @@
 package com.packt.cardatabase.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.ResourceProcessor;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -124,4 +119,11 @@ public class Car {
 	}
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

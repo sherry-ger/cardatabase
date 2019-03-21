@@ -27,7 +27,7 @@ public class CardatabaseApplication {
 		SpringApplication.run(CardatabaseApplication.class, args);
 		logger.info("Hello Spring Boot");
 	}
-	   
+
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
@@ -37,11 +37,11 @@ public class CardatabaseApplication {
 			orepository.save(owner1);
 			orepository.save(owner2);
 			// Add car object with link to owners and save these to db.
-			Car car = new Car("Ford", "Mustang", "Red", "ADF-1121", 2017, 59000, owner1);
+			Car car = new Car("Ford", "Mustang", "Red", "ADF-1121", 2017, 59000, 58321, owner1);
 			repository.save(car);
-			car = new Car("Nissan", "Leaf", "White", "SSJ-3002", 2014, 29000, owner2);
+			car = new Car("Nissan", "Leaf", "White", "SSJ-3002", 2014, 29000, 31998, owner2);
 			repository.save(car);
-			car = new Car("Toyota", "Prius", "Silver", "KKO-0212", 2018, 39000, owner2);
+			car = new Car("Toyota", "Prius", "Silver", "KKO-0212", 2018, 39000, 41556, owner2);
 			repository.save(car);
 		};
 	}

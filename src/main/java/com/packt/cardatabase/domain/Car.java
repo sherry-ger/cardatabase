@@ -30,7 +30,7 @@ public class Car {
 		this.price = price;
 	}
 
-	public Car(String brand, String model, String color, String registerNumber, int year, int price, Owner owner) {
+	public Car(String brand, String model, String color, String registerNumber, int year, int price, int marketEstimate, Owner owner) {
 		super();
 		this.brand = brand;
 		this.model = model;
@@ -38,6 +38,7 @@ public class Car {
 		this.registerNumber = registerNumber;
 		this.year = year;
 		this.price = price;
+        this.marketEstimate = marketEstimate;
 		this.owner = owner;
 	}
 

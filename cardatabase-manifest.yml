@@ -1,0 +1,9 @@
+---
+applications:
+- name: cardatabase-back-end
+  memory: 1G
+  path: ./target/cardatabase-0.0.1-SNAPSHOT.jar
+  buildpacks:
+    - https://github.com/kmacpher67/java-buildpack/#elastic-apm-agent 
+  services:
+    - elastic-apm-service

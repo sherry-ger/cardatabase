@@ -10,4 +10,11 @@ This Service is dependent on https://github.com/bvader/car-value-estimator and s
 
 If you enter a new Car with the brand of Ferrari it will cause a long running estimate in the car-value-estmator service.
 
+To run on a host other than local you will need to update the `estimator.uri` property
+`application.properties` file.
+
+## To Deploy to Cloud foundry
+
+`cf push -f cardatabase-manifest.yml`
+
 The front end React application is at: https://github.com/bvader/carfront

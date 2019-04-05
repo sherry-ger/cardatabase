@@ -21,7 +21,7 @@ https://github.com/cloudfoundry/java-buildpack/blob/master/docs/framework-elasti
 
 Create the user provided service
 
-`cf cups elastic-apm-service -p '{"server_urls":"https://my-apm-server:8200","secret_token":"my-secret-token"}'``
+`cf cups elastic-apm-service -p '{"server_urls":"https://my-apm-server:8200","secret_token":"my-secret-token"}'`
 
 `cf push -f cardatabase-manifest.yml`
 

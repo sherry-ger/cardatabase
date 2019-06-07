@@ -2,8 +2,7 @@
 
 A simple Spring Boot application that uses the H2 in memory database to store cars.
 
-To start the application:
-
+To start the application:  
 `./mvnw spring-boot:run`
 
 This Service is dependent on https://github.com/bvader/car-value-estimator and should be started first.
@@ -12,6 +11,26 @@ If you enter a new Car with the brand of Ferrari it will cause a long running es
 
 To run on a host other than local you will need to update the `estimator.uri` property
 `application.properties` file.
+
+## To start the application with Elastic Java APM Agent
+
+ Build  
+`./mvnw package -Dmaven.test.skip=true`
+
+Get the Elastic Java APM agent  
+`curl -O  https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.6.1/elastic-apm-agent-1.6.1.jar`
+
+Run cardatabase with APM
+NOTE: `trace_methods` enables method tracing which reports all methods which is not recommended for production
+Unix / Mac OS
+```shell_session
+java -javaagent:./elastic-apm-agent-1.6.1.jar \
+-Delastic.apm.server_urls="http://localhost:8200" \
+-Delastic.apm.service_name="cardatabase" \
+-Delastic.apm.trace_methods="com.packt.cardatabase.*" \
+-jar target/cardatabase-0.0.1-SNAPSHOT.jar
+```
+
 
 ## To Deploy to Cloud foundry and Leverage Elastic APM
 

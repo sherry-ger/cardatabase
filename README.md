@@ -26,6 +26,7 @@ Unix / Mac OS
 ```shell_session
 java -javaagent:./elastic-apm-agent-1.6.1.jar \
 -Delastic.apm.server_urls="http://localhost:8200" \
+-Delastic.apm.secret_token=“mysecrettoken” \
 -Delastic.apm.service_name="cardatabase" \
 -Delastic.apm.trace_methods="com.packt.cardatabase.*" \
 -jar target/cardatabase-0.0.1-SNAPSHOT.jar

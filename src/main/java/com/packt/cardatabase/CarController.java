@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RestController
 public class CarController {
 
+    final static Logger logger = LoggerFactory.getLogger(MarketEstimate.class);
 
     @Value("${estimator.uri}")
     private String estimatorUri;
@@ -30,13 +32,13 @@ public class CarController {
 
     @RequestMapping(method= RequestMethod.GET, value="/api/cars")
     public Iterable<Car> Car() {
-        System.out.println("In GET All");
+        logger.debug("In GET All");
         return carRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/api/cars")
     public Car save(@RequestBody Car car) {
-        System.out.println("In POST add");
+        logger.debug("In POST add");
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(estimatorUri)
                 // Add query parameter
@@ -45,11 +47,11 @@ public class CarController {
                 .queryParam("year", car.getYear());
 
 
-        System.out.println(builder.build().toString());
+        logger.debug(builder.build().toString());
         RestTemplate restTemplate = new RestTemplate();
 
         MarketEstimate carEstimate = restTemplate.getForObject(builder.build().toString(), MarketEstimate.class);
-        System.out.println(carEstimate.toString());
+        logger.debug(carEstimate.toString());
 
         car.setMarketEstimate(carEstimate.getEstimate());
 
@@ -60,13 +62,13 @@ public class CarController {
 
     @RequestMapping(method=RequestMethod.GET, value="/api/cars/{id}")
     public Optional<Car> show(@PathVariable Long id) {
-        System.out.println("In GET by id");
+        logger.debug("In GET by id");
         return carRepository.findById(id);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/api/cars/{id}")
     public Car update(@PathVariable Long id, @RequestBody Car Car) {
-        System.out.println("In PUT by id");
+        logger.debug("In PUT by id");
         Optional<Car> optCar = carRepository.findById(id);
         Car car = optCar.get();
         if(Car.getBrand() != null)
@@ -87,11 +89,11 @@ public class CarController {
                 .queryParam("year", car.getYear());
 
 
-        System.out.println(builder.build().toString());
+        logger.debug(builder.build().toString());
         RestTemplate restTemplate = new RestTemplate();
 
         MarketEstimate carEstimate = restTemplate.getForObject(builder.build().toString(), MarketEstimate.class);
-        System.out.println(carEstimate.toString());
+        logger.debug(carEstimate.toString());
 
         car.setMarketEstimate(carEstimate.getEstimate());
 

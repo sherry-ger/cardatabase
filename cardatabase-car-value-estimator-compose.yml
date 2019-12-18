@@ -1,0 +1,31 @@
+---
+  version: '2.2'
+  services:
+    cardatabase:
+      image: bvader/cardatabase:latest
+      environment:
+        - ELASTIC_APM_SERVER_URLS=http://host.docker.internal:8200 
+        - ELASTIC_APM_VERIFY_SERVER_CERT=false 
+        - ELASTIC_APM_SECRET_TOKEN=secret 
+        - ELASTIC_APM_SERVICE_NAME=cardatabase 
+        - ELASTIC_APM_TRACE_METHODS=com.packt.cardatabase.*
+        - ELASTIC_APM_ENABLE_LOG_CORRELATION=true
+        - ESTIMATOR_URI=http://host.docker.internal:8888/estimateValue
+      ports:
+        - "8080:8080"
+      networks: ['apps']  
+
+    car-value-estimator:
+      image: bvader/car-value-estimator:latest
+      environment:
+        - ELASTIC_APM_SERVER_URLS=http://host.docker.internal:8200 
+        - ELASTIC_APM_VERIFY_SERVER_CERT=false 
+        - ELASTIC_APM_SECRET_TOKEN=secret 
+        - ELASTIC_APM_SERVICE_NAME=car-value-estimator 
+        - ELASTIC_APM_TRACE_METHODS=com.bvader.estimator.*
+        - ELASTIC_APM_ENABLE_LOG_CORRELATION=true
+      ports:
+        - "8888:8888"
+      networks: ['apps']
+
+  networks: {apps: {}}

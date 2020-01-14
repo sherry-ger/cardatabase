@@ -1,11 +1,11 @@
 #!/bin/bash
-# set -x
+set -x
 
 AGENT_VERSION=1.12.0
 AGENT_FILE=elastic-apm-agent-${AGENT_VERSION}.jar
 
 if [ ! -f "${AGENT_FILE}" ]; then
-  curl -O  https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/${AGENT_VERSION}/elastic-apm-agent-${AGENT_VERSION}.jar
+  curl -O  https://repo1.maven.org/maven2/co/elastic/apm/elastic-apm-agent/${AGENT_VERSION}/elastic-apm-agent-${AGENT_VERSION}.jar
 fi
 
 ./mvnw clean package -Dmaven.test.skip=true

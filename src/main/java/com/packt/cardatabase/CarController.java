@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 public class CarController {
 
-    final static Logger logger = LoggerFactory.getLogger(MarketEstimate.class);
+    final static Logger logger = LoggerFactory.getLogger(CarController.class);
 
     @Value("${estimator.uri}")
     private String estimatorUri;

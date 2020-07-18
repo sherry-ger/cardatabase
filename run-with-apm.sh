@@ -1,7 +1,7 @@
 #!/bin/bash
-set -x
+# set -x
 
-AGENT_VERSION=1.12.0
+AGENT_VERSION=1.17.0
 AGENT_FILE=elastic-apm-agent-${AGENT_VERSION}.jar
 
 if [ ! -f "${AGENT_FILE}" ]; then
@@ -14,9 +14,11 @@ java -javaagent:./${AGENT_FILE} \
 -Delastic.apm.server_urls="http://localhost:8200" \
 -Delastic.apm.secret_token="mysecrettoken" \
 -Delastic.apm.service_name="cardatabase" \
--Delastic.apm.trace_methods="com.packt.cardatabase.*" \
+-Delastic.apm.profiling_inferred_spans_enabled=true \
 -Delastic.apm.enable_log_correlation=true \
 -jar target/cardatabase-0.0.1-SNAPSHOT.jar
 
 # Add this to above if you have a self signed cert for testing 
 #-Delastic.apm.verify_server_cert=false \
+#-Delastic.apm.trace_methods="com.packt.cardatabase.*" \
+#-Delastic.apm.transaction_sample_rat="0.5" \

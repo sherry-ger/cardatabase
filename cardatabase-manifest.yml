@@ -7,3 +7,5 @@ applications:
   path: ./target/cardatabase-0.0.1-SNAPSHOT.jar
   services:
     - elastic-apm-service
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'

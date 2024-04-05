@@ -13,7 +13,7 @@ fi
 ./mvnw clean package -Dmaven.test.skip=true
 
 java -javaagent:./${AGENT_FILE} \
--Delastic.apm.server_urls=${ELASTIC_APM_SERVER_URLS}\
+-Delastic.apm.server_urls=${ELASTIC_APM_SERVER_URLS} \
 -Delastic.apm.secret_token=${ELASTIC_APM_SECRET_TOKEN} \
 -Delastic.apm.service_name="cardatabase" \
 -Delastic.apm.enable_log_correlation=true \
